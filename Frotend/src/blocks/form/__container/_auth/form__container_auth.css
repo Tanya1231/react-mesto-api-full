@@ -1,0 +1,23 @@
+.form__container_auth {
+  font-family: "Inter";
+  margin: 1px auto 0;
+  padding: 10px 0 9px;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+  color: #fff;
+  background-color: unset;
+  border-bottom: 2px solid #cccccc;
+}
+
+.form__container_auth:last-of-type {
+  margin-bottom: 200px;
+}
+
+@media screen and (max-width: 767px) {
+  .form__container_auth:last-of-type {
+    margin-bottom: 150px;
+  }
+}

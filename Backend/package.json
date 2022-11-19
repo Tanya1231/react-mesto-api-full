@@ -1,0 +1,37 @@
+{
+  "name": "express-mesto-gha",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "express-winston": "^4.2.0",
+    "nodemon": "^2.0.20",
+    "winston": "^3.8.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "celebrate": "^15.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "env": "^0.0.2",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "logger": "^0.0.1",
+    "mongoose": "^6.7.2",
+    "validator": "^13.7.0",
+    "winston": "^3.8.2"
+  }
+}

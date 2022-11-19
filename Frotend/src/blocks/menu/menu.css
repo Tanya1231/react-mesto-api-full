@@ -1,0 +1,24 @@
+.menu {
+  visibility: hidden;
+  display: flex;
+  gap: 24px;
+  visibility: visible;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .menu {
+    gap: 18px;
+    flex-direction: column;
+    display: none;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    align-items: center;
+    padding: 40px 0;
+  }
+}
+
+.menu:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}

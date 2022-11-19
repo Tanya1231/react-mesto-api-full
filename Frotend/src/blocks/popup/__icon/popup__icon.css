@@ -1,0 +1,11 @@
+.popup__icon {
+  width: 120px;
+  height: 120px;
+  padding-left: 130px;
+}
+
+@media screen and (max-width: 526px) {
+  .popup__icon {
+    padding-left: 60px;
+  }
+}

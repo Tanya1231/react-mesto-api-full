@@ -1,0 +1,9 @@
+.popup__text-link {
+  text-decoration: none;
+  color: #ffffff;
+  margin-left: 5px;
+}
+
+.popup__text-link:hover {
+  opacity: 0.6;
+}
