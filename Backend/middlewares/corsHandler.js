@@ -7,7 +7,7 @@ const allowedCors = [
   'https://localhost:3000',
 ];
 
-const DEFAULT_ALLOWED_METHODS = 'GET, HEAD, PUT, PATCH, POST, DELETE';
+const DEFAULT_ALLOWED_METHODS = ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'];
 
 const corsHandler = (req, res, next) => {
   const { origin } = req.headers;
