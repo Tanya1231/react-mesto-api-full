@@ -12,13 +12,12 @@ const { logoff } = require('./controllers/users');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+app.use(cookieParser());
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(cookieParser());
 
 app.use(corsHandler);
 

@@ -34,9 +34,4 @@ router.post('/signup', celebrate({
 router.use('/users', auth, routerUsers);
 router.use('/cards', auth, routerCards);
 
-router.use(auth, (res, req, next) => {
-  const err = new ErrorNotFound();
-  next(err);
-});
-
 module.exports = router;

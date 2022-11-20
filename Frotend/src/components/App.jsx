@@ -158,6 +158,7 @@ function App() {
       .then(res => {
         if(res.token) {
         setLoggedIn(true);
+        localStorage.setItem("jwt", res.token);
         history.push("/");
         }
       })
