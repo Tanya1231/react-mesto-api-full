@@ -100,8 +100,7 @@ const login = async (req, res, next) => {
     res.cookie('jwt', token, {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
-    });
-    res.send({ message: 'Авторизация успешна', token, user });
+    }).send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
     next(err);
   }

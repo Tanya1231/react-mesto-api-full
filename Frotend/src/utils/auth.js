@@ -31,10 +31,7 @@ export const authorize = (email, password) => {
         body: JSON.stringify({ email, password })
     })
     .then(checkResponse)
-    .then((data) => {
-        localStorage.setItem('jwt', data.token)
-        return data;
-    })
+
 };
 
 export const checkToken = () => {
@@ -42,10 +39,8 @@ export const checkToken = () => {
         method: 'GET',
         credentials: 'include',
         headers: {
-          Accept: 'application/json',
           'Content-Type': 'application/json',
         }
       })
-      .then(res => res.json())
-      .then(data => data)
+      .then(checkResponse)
     } 
