@@ -137,10 +137,10 @@ function App() {
       });
   }
 
-  function handleRegister(email, password) {
-    auth
+  function handleRegister( email, password ) {
+    return auth
       .register(email, password)
-      .then(() => {
+      .then((res) => {
         setIsSuccess(true);
         setIsInfoTooltipPopupOpen(true);
         history.push("/sign-in");
@@ -152,14 +152,15 @@ function App() {
       });
   }
 
-  function handleLogin(email, password) {
-    auth
+  function handleLogin( email, password ) {
+    return auth
       .authorize(email, password)
       .then(res => {
+        if(res.token) {
         setLoggedIn(true);
         localStorage.setItem("jwt", res.token);
-        setUserEmail(email);
         history.push("/");
+        }
       })
       .catch(err => {
         setIsSuccess(false);
@@ -174,11 +175,11 @@ function App() {
     history.push("/sign-in");
   };
 
-  React.useEffect((res) => {
+  React.useEffect(() => {
     if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
       auth
-        .checkToken(jwt, res.token)
+        .checkToken(jwt)
         .then(res => {
           setUserEmail(res.email);
           setLoggedIn(true);

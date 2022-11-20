@@ -1,6 +1,6 @@
 {
   "name": "express-mesto-gha",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "app.js",
   "scripts": {
     "lint": "npx eslint .",
@@ -14,6 +14,7 @@
     "eslint": "^8.25.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
     "express-winston": "^4.2.0",
     "nodemon": "^2.0.20",
     "winston": "^3.8.2"

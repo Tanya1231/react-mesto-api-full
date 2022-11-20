@@ -15,6 +15,7 @@ export default class Api {
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+      credentials: 'include',
     });
     return this._handleResponse(res);
   }
@@ -22,6 +23,7 @@ export default class Api {
   async editUserInfo(name, about) {
     const res = await fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -33,7 +35,12 @@ export default class Api {
 
   async getInitialCards() {
     const res = await fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      method: "GET",
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+      },
     });
     return this._handleResponse(res);
   }
@@ -41,7 +48,10 @@ export default class Api {
   async setUserAvatar(avatar) {
     const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -52,7 +62,10 @@ export default class Api {
   async addCard(name, link) {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name: name,
         link: link,
@@ -64,7 +77,10 @@ export default class Api {
   async putLike(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     return this._handleResponse(res);
   }
@@ -72,7 +88,10 @@ export default class Api {
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include',
     });
     this._handleResponse(res);
   }
@@ -81,7 +100,10 @@ export default class Api {
   async removeLike(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     return this._handleResponse(res);
   }

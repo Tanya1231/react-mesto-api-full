@@ -1,10 +1,10 @@
 export const BASE_URL = "https://api.mesto22.nomoredomains.icu";
 
-const checkResponse = (response) => {
-    if(response.ok) {
-        return response.json()
+const checkResponse = (res) => {
+    if(res.ok) {
+        return res.json()
     }
-    return Promise.reject(`Ошибка: ${response.status}`);
+    return Promise.reject(`Ошибка: ${res.status}`);
 }
 
 
@@ -25,21 +25,25 @@ export const authorize = (email, password) => {
         method:"POST",
         credentials: 'include',
         headers: {
+            Accept: 'application/json',
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ email, password })
     })
     .then(checkResponse)
+    .then((data) => {
+        localStorage.setItem('jwt', data.token)
+        return data;
+    })
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         credentials: 'include',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
         }
       })
       .then(res => res.json())

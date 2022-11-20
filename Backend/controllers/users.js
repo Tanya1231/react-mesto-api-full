@@ -97,11 +97,7 @@ const login = async (req, res, next) => {
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
-    res.cookie('jwt', token, {
-      maxAge: 3600000 * 24 * 7,
-      httpOnly: true,
-    });
-    res.send({ message: 'Авторизация успешна' });
+    res.send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
     next(err);
   }
