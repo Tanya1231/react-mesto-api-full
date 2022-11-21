@@ -57,7 +57,7 @@ const Register = ({ onRegister }) => {
         </button>
         <p className="popup__text">
           Уже зарегистрировались?
-          <Link className="popup__text-link" to="/sign-in">
+          <Link className="popup__text-link" to="/signin">
             Войти
           </Link>
         </p>

@@ -33,13 +33,13 @@ function Header({ loggedIn, userEmail, onSignOut }) {
         <>
           <div className="header__container">
             <img src={logo} className="header__logo" alt="Место Россия" />
-            <Route path="/sign-up">
-              <Link className="header__link" to="/sign-in">
+            <Route path="/signup">
+              <Link className="header__link" to="/signin">
                 Войти
               </Link>
             </Route>
-            <Route path="/sign-in">
-              <Link className="header__link" to="/sign-up">
+            <Route path="/signin">
+              <Link className="header__link" to="/signup">
                 Регистрация
               </Link>
             </Route>
