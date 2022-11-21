@@ -156,7 +156,6 @@ function App() {
     return auth
       .authorize(email, password)
       .then(res => {
-        setLoggedIn(true);
         if(res.token) {
         setLoggedIn(true);
         history.push("/");
@@ -176,17 +175,18 @@ function App() {
   };
 
   React.useEffect((token) => {
-      auth
-        .checkToken(token)
-        .then(res => {
-          setUserEmail(res.email);
-          setLoggedIn(true);
-          history.push("/");
-        })
-        .catch(err => {
-          console.log(err);
-        });
-  }, [history]);
+    auth
+      .checkToken(token)
+      .then(res => {
+        setUserEmail(res.email);
+        setLoggedIn(true);
+        history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+}, [history]);
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

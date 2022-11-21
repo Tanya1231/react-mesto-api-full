@@ -15,8 +15,8 @@ export default class Api {
 
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
       credentials: 'include',
+      headers: this._headers,
     });
     return this._handleResponse(res);
   }
@@ -89,10 +89,10 @@ export default class Api {
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: 'include',
     });
     this._handleResponse(res);
   }
