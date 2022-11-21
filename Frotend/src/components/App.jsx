@@ -35,7 +35,6 @@ function App() {
   );
   const [userEmail, setUserEmail] = React.useState("");
   const history = useHistory();
-  const userToken = document.cookie.jwt.token;
 
   React.useEffect(() => {
     if (loggedIn) {
