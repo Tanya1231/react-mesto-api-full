@@ -156,6 +156,7 @@ function App() {
     return auth
       .authorize(email, password)
       .then(res => {
+        setLoggedIn(true);
         if(res.token) {
         setLoggedIn(true);
         history.push("/");
@@ -174,10 +175,9 @@ function App() {
     history.push("/sign-in");
   };
 
-  React.useEffect(() => {
-      const jwt = localStorage.getItem("token");
+  React.useEffect((token) => {
       auth
-        .checkToken(jwt)
+        .checkToken(token)
         .then(res => {
           setUserEmail(res.email);
           setLoggedIn(true);
