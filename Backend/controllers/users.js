@@ -97,7 +97,7 @@ const login = async (req, res, next) => {
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
-    res.cookie('jwt', token, {
+    res.cookie('token', token, {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
     }).send({ message: 'Авторизация успешна', token, user });
@@ -141,7 +141,7 @@ const updateAvatar = async (req, res, next) => {
 };
 
 const logoff = (req, res) => {
-  res.clearCookie('jwt', {
+  res.clearCookie('token', {
     httpOnly: true,
     sameSite: false,
     secure: true,

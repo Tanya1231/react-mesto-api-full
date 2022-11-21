@@ -20,14 +20,13 @@ export const register =  (email, password) => {
     .then(checkResponse)
 }
 
-export const authorize = (email, password, token) => {
+export const authorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
         method:"POST",
         credentials: 'include',
         headers: {
             Accept: 'application/json',
             "Content-Type": "application/json",
-            "Autorizaton": localStorage.getItem(token),
         },
         body: JSON.stringify({ email, password })
     })
@@ -35,13 +34,12 @@ export const authorize = (email, password, token) => {
 
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          "Autorizaton": localStorage.getItem(token),
         }
       })
       .then(checkResponse)

@@ -157,8 +157,8 @@ function App() {
       .authorize(email, password)
       .then(res => {
         if(res.token) {
+          localStorage.setItem("token", res.token);
         setLoggedIn(true);
-        localStorage.setItem("jwt", res.token);
         history.push("/");
         }
       })
