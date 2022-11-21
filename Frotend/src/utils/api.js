@@ -80,7 +80,7 @@ export default class Api {
       method: "PUT",
       credentials: 'include',
       headers: {
-        'Accept': 'application/json',
+             'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
