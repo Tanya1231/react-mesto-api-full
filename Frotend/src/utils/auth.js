@@ -40,6 +40,7 @@ export const checkToken = () => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'token': 'token'
         }
       })
       .then(checkResponse)
