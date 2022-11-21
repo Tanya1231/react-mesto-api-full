@@ -32,16 +32,3 @@ export const authorize = (email, password) => {
     })
     .then(checkResponse)
 };
-
-export const checkToken = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        }
-      })
-      .then(res => res.json())
-      .then(data => data)
-    } 

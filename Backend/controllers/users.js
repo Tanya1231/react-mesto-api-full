@@ -82,6 +82,7 @@ const updateProfile = async (req, res, next) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -100,7 +101,8 @@ const login = async (req, res, next) => {
     res.cookie('jwt', token, {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
-    }).send({ message: 'Авторизация успешна', token, user });
+    });
+    return res.send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
     next(err);
   }

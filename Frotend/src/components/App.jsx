@@ -152,40 +152,26 @@ function App() {
       });
   }
 
-  function handleLogin( email, password ) {
-    return auth
-      .authorize(email, password)
-      .then(res => {
-        if(res.token) {
-        setLoggedIn(true);
-        history.push("/");
-        }
+
+
+  function handleLogin ( email, password ) {
+    auth
+      .authorize( email, password )
+      .then((res) => {
+        setLoggedIn(true)
+        localStorage.setItem('jwt', res.token)
+        history.push('/')
       })
-      .catch(err => {
-        setIsSuccess(false);
-        setIsInfoTooltipPopupOpen(true);
-        console.log(err);
-      });
+      .catch((err) => console.log(err))
   }
+
 
   const handleSignOut = () => {
     setLoggedIn(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     history.push("/sign-in");
   };
 
-  React.useEffect((token) => {
-    auth
-      .checkToken(token)
-      .then(res => {
-        setUserEmail(res.email);
-        setLoggedIn(true);
-        history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-}, [history]);
 
 
   return (
