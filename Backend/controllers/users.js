@@ -100,6 +100,8 @@ const login = async (req, res, next) => {
     res.cookie('token', token, {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
     }).send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
     next(err);

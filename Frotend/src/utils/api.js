@@ -4,6 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
+
   _handleResponse(res) {
     if (res.ok) {
       return res.json();
