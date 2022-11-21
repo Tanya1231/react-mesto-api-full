@@ -80,6 +80,7 @@ export default class Api {
       method: "PUT",
       credentials: 'include',
       headers: {
+        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
@@ -91,6 +92,7 @@ export default class Api {
       method: "DELETE",
       credentials: 'include',
       headers: {
+        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
@@ -103,6 +105,7 @@ export default class Api {
       method: "DELETE",
       credentials: 'include',
       headers: {
+        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
