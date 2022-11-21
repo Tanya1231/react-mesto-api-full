@@ -33,7 +33,7 @@ function App() {
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(
     false
   );
-  const [userEmail, setUserEmail] = React.useState("");
+  const [userEmail] = React.useState("");
   const history = useHistory();
 
   React.useEffect(() => {
@@ -138,7 +138,7 @@ function App() {
   }
 
   function handleRegister( email, password ) {
-    return auth
+   auth
       .register(email, password)
       .then((res) => {
         setIsSuccess(true);

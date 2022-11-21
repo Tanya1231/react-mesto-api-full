@@ -119,7 +119,7 @@ async changeLikeCardStatus(cardId, isLiked) {
 }
 
 export const api = new Api({
-  baseUrl: "https://api.mesto22.nomoredomains.icu",
+  baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },
