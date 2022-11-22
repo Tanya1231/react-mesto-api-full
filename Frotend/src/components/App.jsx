@@ -137,10 +137,10 @@ function App() {
       });
   }
 
-  function handleRegister( email, password ) {
-   auth
+  function handleRegister(email, password) {
+    auth
       .register(email, password)
-      .then((res) => {
+      .then(res => {
         setIsSuccess(true);
         setIsInfoTooltipPopupOpen(true);
         history.push("/signin");
@@ -152,27 +152,22 @@ function App() {
       });
   }
 
-
-
-  function handleLogin ( email, password ) {
+  function handleLogin(email, password) {
     auth
-      .authorize( email, password )
-      .then((res) => {
-        setLoggedIn(true)
-        localStorage.setItem('jwt', res.token)
-        history.push('/')
+      .authorize(email, password)
+      .then(res => {
+        setLoggedIn(true);
+        localStorage.setItem("jwt", res.token);
+        history.push("/");
       })
-      .catch((err) => console.log(err))
+      .catch(err => console.log(err));
   }
-
 
   const handleSignOut = () => {
     setLoggedIn(false);
     localStorage.removeItem("jwt");
     history.push("/signin");
   };
-
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

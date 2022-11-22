@@ -4,7 +4,6 @@ export default class Api {
     this._headers = headers;
   }
 
-
   _handleResponse(res) {
     if (res.ok) {
       return res.json();
@@ -15,7 +14,7 @@ export default class Api {
 
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
-      credentials: 'include',
+      credentials: "include",
       headers: this._headers,
     });
     return this._handleResponse(res);
@@ -24,7 +23,7 @@ export default class Api {
   async editUserInfo(name, about) {
     const res = await fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      credentials: 'include',
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -37,9 +36,8 @@ export default class Api {
   async getInitialCards() {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      credentials: 'include',
+      credentials: "include",
       headers: {
-        Accept: 'application/json',
         "Content-Type": "application/json",
       },
     });
@@ -49,7 +47,7 @@ export default class Api {
   async setUserAvatar(avatar) {
     const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -63,7 +61,7 @@ export default class Api {
   async addCard(name, link) {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -78,9 +76,8 @@ export default class Api {
   async putLike(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      credentials: 'include',
+      credentials: "include",
       headers: {
-             'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
@@ -90,39 +87,36 @@ export default class Api {
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      credentials: 'include',
+      credentials: "include",
       headers: {
-        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
     this._handleResponse(res);
   }
-  
 
   async removeLike(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      credentials: 'include',
+      credentials: "include",
       headers: {
-        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
     });
     return this._handleResponse(res);
   }
 
-async changeLikeCardStatus(cardId, isLiked) {
-  if(isLiked) {
-    return this.removeLike(cardId)
-  } else {
-    return this.putLike(cardId)
+  async changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.removeLike(cardId);
+    } else {
+      return this.putLike(cardId);
+    }
   }
-}
 }
 
 export const api = new Api({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://localhost:3001",
   headers: {
     "Content-Type": "application/json",
   },
