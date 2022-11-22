@@ -114,8 +114,7 @@ const login = async (req, res) => {
 
 const getMyInfo = async (req, res, next) => {
   try {
-    const userId = req.user._id;
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user);
     if (!user) {
       return next(new ErrorNotFound('Указанный пользователь не найден'));
     }
