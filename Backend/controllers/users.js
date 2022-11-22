@@ -148,14 +148,12 @@ const updateAvatar = async (req, res, next) => {
   }
 };
 
-const logoff = (req, res) => {
-  res.clearCookie('jwt', {
-    httpOnly: true,
-    sameSite: false,
-    secure: true,
-  });
-  res.status(200)
-    .send({ message: 'Вы вышли из аккаунта' });
+const logoff = async (req, res, next) => {
+  try {
+    await res.clearCookie('jwt').send({ message: 'Вы вышли из акаунта' });
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {
