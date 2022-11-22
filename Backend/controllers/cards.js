@@ -9,7 +9,7 @@ const getCards = async (req, res, next) => {
     const cards = await Card.find({});
     return res.send(cards);
   } catch (err) {
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию карточки'), err);
   }
 };
 
@@ -23,7 +23,7 @@ const createCard = async (req, res, next) => {
     if (err.name === 'ValidationError') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию создать карточку'), err);
   }
 };
 
@@ -43,7 +43,7 @@ const deleteCard = async (req, res, next) => {
     if (err.kind === 'ObjectId') {
       return next(new ErrorCode('Переданны неккоректные данные для удаления карточки'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию удаление'), err);
   }
 };
 
@@ -63,7 +63,7 @@ const likeCard = async (req, res, next) => {
     if (err.kind === 'ObjectId') {
       return next(new ErrorCode('Переданны неккоректные данные для лайка карточки'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию лайк'), err);
   }
 };
 
@@ -83,7 +83,7 @@ const dislikeCard = async (req, res, next) => {
     if (err.name === 'CastError') {
       return next(new ErrorCode('Переданны неккоректные данные для дизлайка карточки'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию дизлайк'), err);
   }
 };
 

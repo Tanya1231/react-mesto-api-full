@@ -14,7 +14,7 @@ const getUsers = async (req, res, next) => {
     const users = await User.find({});
     return res.send(users);
   } catch (err) {
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию users'), err);
   }
 };
 
@@ -30,7 +30,7 @@ const getUserById = async (req, res, next) => {
     if (err.kind === 'ObjectId') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию getUser'), err);
   }
 };
 
@@ -57,7 +57,7 @@ const createUser = async (req, res, next) => {
     if (err.code === 11000) {
       return next(new ErrorConflict('При регистрации указан email, который уже существует на сервере'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию регистрация'), err);
   }
 };
 
@@ -78,7 +78,7 @@ const updateProfile = async (req, res, next) => {
     if (err.name === 'ValidationError') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию профиль'), err);
   }
 };
 
@@ -117,7 +117,7 @@ const getMyInfo = async (req, res, next) => {
     }
     return res.send(user);
   } catch (err) {
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию getMyInfo'), err);
   }
 };
 
@@ -138,7 +138,7 @@ const updateAvatar = async (req, res, next) => {
     if (err.name === 'ValidationError') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
-    return next(new ErrorServer('Ошибка по умолчанию'), err);
+    return next(new ErrorServer('Ошибка по умолчанию аватар'));
   }
 };
 
