@@ -14,6 +14,7 @@ const getUsers = async (req, res, next) => {
     const users = await User.find({});
     return res.send(users);
   } catch (err) {
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
@@ -30,6 +31,7 @@ const getUserById = async (req, res, next) => {
     if (err.kind === 'ObjectId') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
@@ -57,6 +59,7 @@ const createUser = async (req, res, next) => {
     if (err.code === 11000) {
       return next(new ErrorConflict('При регистрации указан email, который уже существует на сервере'));
     }
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
@@ -78,12 +81,13 @@ const updateProfile = async (req, res, next) => {
     if (err.name === 'ValidationError') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
 
 // eslint-disable-next-line consistent-return
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email }).select('+password');
@@ -104,7 +108,7 @@ const login = async (req, res, next) => {
     });
     return res.send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 };
 
@@ -117,6 +121,7 @@ const getMyInfo = async (req, res, next) => {
     }
     return res.send(user);
   } catch (err) {
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
@@ -138,6 +143,7 @@ const updateAvatar = async (req, res, next) => {
     if (err.name === 'ValidationError') {
       return next(new ErrorCode('Переданные данные не валидны'));
     }
+    console.log(err);
     return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
