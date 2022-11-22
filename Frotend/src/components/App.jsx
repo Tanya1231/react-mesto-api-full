@@ -37,18 +37,32 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((userData) => {
+        setLoggedIn(true);
+        setUserEmail(userData.email);
+        setCurrentUser(userData);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggedIn, history]);
+
+  React.useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getInitialCards(), api.getUserInfo()])
-        .then(result => {
-          const [cards, data] = result;
+      api
+        .getInitialCards()
+        .then((cards) => {
           setCards(cards);
-          setCurrentUser(data);
+          history.push('/');
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, history]);
 
   const handleCardClick = card => {
     setSelectedCard(card);
@@ -157,28 +171,12 @@ function App() {
       .authorize(email, password)
       .then(res => {
         setLoggedIn(true);
-        localStorage.setItem("jwt", res.token);
-       setUserEmail(email);
+        setUserEmail(email);
         history.push("/");
       })
       .catch(err => console.log(err));
   }
   
-  React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .checkToken(jwt)
-        .then((res) => {
-          if (res) {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            history.push('/');
-          }
-        })
-  }
-},
- [history]);
 
   const handleSignOut = () => {
     setLoggedIn(false);
