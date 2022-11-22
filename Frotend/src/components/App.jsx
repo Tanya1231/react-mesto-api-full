@@ -33,7 +33,7 @@ function App() {
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(
     false
   );
-  const [userEmail] = React.useState("");
+  const [userEmail, setUserInfo] = React.useState("");
   const history = useHistory();
 
   React.useEffect(() => {
@@ -158,10 +158,27 @@ function App() {
       .then(res => {
         setLoggedIn(true);
         localStorage.setItem("jwt", res.token);
+       setUserEmail(email);
         history.push("/");
       })
       .catch(err => console.log(err));
   }
+  
+  React.useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setUserEmail(res.data.email);
+            setLoggedIn(true);
+            history.push('/');
+          }
+        })
+  }
+},
+ [history]);
 
   const handleSignOut = () => {
     setLoggedIn(false);
