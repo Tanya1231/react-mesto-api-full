@@ -149,7 +149,7 @@ const updateAvatar = async (req, res, next) => {
 };
 
 const logoff = (req, res) => {
-  res.clearCookie('token', {
+  res.clearCookie('jwt', {
     httpOnly: true,
     sameSite: false,
     secure: true,
