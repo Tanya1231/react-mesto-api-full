@@ -155,9 +155,8 @@ function App() {
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
-      .then(res => {
+      .then(() => {
         setLoggedIn(true);
-        localStorage.setItem("jwt", res.token);
         history.push("/");
       })
       .catch(err => console.log(err));
