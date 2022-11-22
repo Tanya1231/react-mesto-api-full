@@ -113,8 +113,9 @@ const login = async (req, res) => {
 };
 
 const getMyInfo = async (req, res, next) => {
+   const userId = req.user._id;
   try {
-    const user = await User.findById(req.user);
+    const user = await User.findById(userId);
     if (!user) {
       return next(new ErrorNotFound('Указанный пользователь не найден'));
     }
