@@ -37,32 +37,19 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setLoggedIn(true);
-        setUserEmail(userData.email);
-        setCurrentUser(userData);
-        history.push('/');
+    if(!loggedIn) {
+      return
+    }
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cards]) => {
+        setUserEmail(userData.email)
+        setCards(cards)
+        history.push("/");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
-  }, [loggedIn, history]);
-
-  React.useEffect(() => {
-    if (loggedIn) {
-      api
-        .getInitialCards()
-        .then((cards) => {
-          setCards(cards);
-          history.push('/');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn, history]);
+    }, [loggedIn])
 
   const handleCardClick = card => {
     setSelectedCard(card);
