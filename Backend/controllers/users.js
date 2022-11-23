@@ -103,7 +103,7 @@ const login = async (req, res) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
     res.cookie('jwt', token, {
-      maxAge: 3600000 * 24 * 7,
+      {expiresIn: '7d'}
       httpOnly: true,
       sameSite: 'none',
       secure: true,
@@ -153,7 +153,6 @@ const updateAvatar = async (req, res, next) => {
 const logoff = async (req, res, next) => {
   try {
     await res.clearCookie('token', {
-       maxAge: 10,
       httpOnly: true,
       sameSite: 'none',
       secure: true,
