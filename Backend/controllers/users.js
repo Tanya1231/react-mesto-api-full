@@ -102,14 +102,14 @@ const login = async (req, res) => {
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
-    res.cookie('jwt', token, {
+  res.cookie('jwt', token, {
+      maxAge: 3600000,
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
+      sameSite: true,
     });
-    return res.send({ message: 'Авторизация успешна', token, user });
+    return res.status(200).send({ message: 'Авторизация прошла успешно', token, user });
   } catch (err) {
-    console.log(err);
+    return next(new ErrorServer('Ошибка по умолчанию'));
   }
 };
 
@@ -153,7 +153,7 @@ const logoff = async (req, res, next) => {
   try {
     await res.clearCookie('jwt', {
       httpOnly: true,
-      sameSite: 'none',
+      sameSite: true,
       secure: true,
     }).send({ message: 'Вы вышли из акаунта!' });
   } catch (err) {
