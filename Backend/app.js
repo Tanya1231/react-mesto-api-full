@@ -30,7 +30,7 @@ app.get('/crash-test', () => {
 
 app.use(errorLogger);
 
-app.post('/signout', auth, logoff);
+app.post('/signout', logoff);
 
 app.use(router);
 
