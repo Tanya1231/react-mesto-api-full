@@ -29,3 +29,13 @@ export const authorize = (email, password) => {
   }).then(checkResponse);
 };
 
+export const logoff = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
+}
+
