@@ -36,8 +36,7 @@ function App() {
   const [userEmail, setUserInfo] = React.useState("");
   const history = useHistory();
 
-  React.useEffect(() => {
-    if (loggedIn) {
+   React.useEffect(() => {
     api
       .getUserInfo()
       .then((userData) => {
@@ -49,7 +48,6 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    }
   }, [loggedIn, history]);
 
   React.useEffect(() => {
