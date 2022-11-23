@@ -105,6 +105,8 @@ const login = async (req, res) => {
     res.cookie('jwt', token, {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
+      sameSite: 'none',
+      secure: true,
     });
     return res.send({ message: 'Авторизация успешна', token, user });
   } catch (err) {
@@ -151,6 +153,7 @@ const updateAvatar = async (req, res, next) => {
 const logoff = async (req, res, next) => {
   try {
     await res.clearCookie('token', {
+       maxAge: 10,
       httpOnly: true,
       sameSite: 'none',
       secure: true,
