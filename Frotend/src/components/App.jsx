@@ -37,6 +37,7 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
+    if (loggedIn) {
     api
       .getUserInfo()
       .then((userData) => {
@@ -48,6 +49,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, [loggedIn, history]);
 
   React.useEffect(() => {
