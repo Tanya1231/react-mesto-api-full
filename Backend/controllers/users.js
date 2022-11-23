@@ -103,7 +103,6 @@ const login = async (req, res) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
     res.cookie('jwt', token, {
-      {expiresIn: '7d'}
       httpOnly: true,
       sameSite: 'none',
       secure: true,
