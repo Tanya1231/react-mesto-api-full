@@ -151,7 +151,7 @@ const updateAvatar = async (req, res, next) => {
 
 const logoff = async (req, res, next) => {
   try {
-    await res.clearCookie('token', {
+    await res.clearCookie('jwt', {
       httpOnly: true,
       sameSite: 'none',
       secure: true,
