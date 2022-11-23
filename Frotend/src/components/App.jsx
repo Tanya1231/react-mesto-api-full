@@ -179,9 +179,13 @@ function App() {
   
 
   const handleSignOut = () => {
-    setLoggedIn(false);
-    localStorage.removeItem("jwt");
-    history.push("/signin");
+    auth.logoff()
+    .then(() => {
+      setCurrentUser('')
+      setUserEmail('')
+      setLoggedIn(false);
+   history.push("/signin");
+  })
   };
 
   return (
