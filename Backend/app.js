@@ -8,6 +8,7 @@ const corsHandler = require('./middlewares/corsHandler');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { logoff } = require('./controllers/users');
+const auth = require('./middlewares/auth');
 
 const { PORT = 3000 } = process.env;
 
@@ -29,7 +30,7 @@ app.get('/crash-test', () => {
 
 app.use(errorLogger);
 
-app.post('/logoff', logoff);
+app.delete('/signout', auth, logoff);
 
 app.use(router);
 
