@@ -152,6 +152,7 @@ const logoff = async (req, res, next) => {
   try {
     await res.clearCookie('token', {
       httpOnly: true,
+      sameSite: 'none',
       secure: true,
     }).send({ message: 'Вы вышли из акаунта!' });
   } catch (err) {
