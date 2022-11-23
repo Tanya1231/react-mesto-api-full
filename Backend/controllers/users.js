@@ -150,7 +150,10 @@ const updateAvatar = async (req, res, next) => {
 
 const logoff = async (req, res, next) => {
   try {
-    await res.clearCookie('jwt').send({ message: 'Вы вышли из акаунта' });
+    await res.clearCookie('token', {
+      httpOnly: true,
+      secure: true,
+    }).send({ message: 'Вы вышли из акаунта!' });
   } catch (err) {
     next(err);
   }
