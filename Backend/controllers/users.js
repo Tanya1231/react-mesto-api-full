@@ -87,7 +87,7 @@ const updateProfile = async (req, res, next) => {
 };
 
 // eslint-disable-next-line consistent-return
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email }).select('+password');
@@ -102,7 +102,7 @@ const login = async (req, res) => {
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'some-secret',
     );
-  res.cookie('jwt', token, {
+    res.cookie('jwt', token, {
       maxAge: 3600000,
       httpOnly: true,
       sameSite: true,
@@ -114,7 +114,7 @@ const login = async (req, res) => {
 };
 
 const getMyInfo = async (req, res, next) => {
-   const userId = req.user._id;
+  const userId = req.user._id;
   try {
     const user = await User.findById(userId);
     if (!user) {
