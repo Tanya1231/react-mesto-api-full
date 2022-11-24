@@ -28,13 +28,13 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.use(errorLogger);
+app.use(requestLogger);
 
 app.post('/signout', auth, logoff);
 
 app.use(router);
 
-app.use(requestLogger);
+app.use(errorLogger);
 
 app.use(errors());
 
