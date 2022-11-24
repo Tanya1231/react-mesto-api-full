@@ -34,4 +34,8 @@ router.post('/signup', celebrate({
 router.use('/users', auth, routerUsers);
 router.use('/cards', auth, routerCards);
 
+router.use((err, req, res, next) => {
+  next(new ErrorNotFound('Страница не найдена'));
+});
+
 module.exports = router;
